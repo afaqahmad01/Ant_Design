@@ -9,38 +9,85 @@ import {
   BarsOutlined,
 } from "@ant-design/icons";
 
+const { SubMenu } = Menu;
+
 const MenuList = ({ darkTheme }) => {
+  const items = [
+    {
+      label: "Home",
+      icon: <HomeOutlined />,
+      key: "Home",
+    },
+    {
+      label: "Activity",
+      icon: <AppstoreAddOutlined />,
+      key: "Activity",
+      subItems: [
+        {
+          key: "task1",
+          label: "Task 1",
+        },
+        {
+          key: "task2",
+          label: "Task 2",
+        },
+        {
+          key: "subtasks",
+          label: "Sub Tasks",
+          subItems: [
+            {
+              key: "subtask-1",
+              label: "Sub Task 1",
+            },
+            {
+              key: "subtask-2",
+              label: "Sub Task 2",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Progress",
+      icon: <AreaChartOutlined />,
+      key: "Progress",
+    },
+    {
+      label: "Payment",
+      icon: <PayCircleOutlined />,
+      key: "Payment",
+    },
+    {
+      label: "Setting",
+      icon: <SettingOutlined />,
+      key: "Setting",
+    },
+  ];
+  const renderMenuItems = (menuItems) =>
+    menuItems.map((item) => {
+      if (item.subItems) {
+        return (
+          <SubMenu key={item.key} icon={item.icon} title={item.label}>
+            {renderMenuItems(item.subItems)}
+          </SubMenu>
+        );
+      } else {
+        return (
+          <Menu.Item key={item.key} icon={item.icon} item={items.label}>
+            {item.label}
+          </Menu.Item>
+        );
+      }
+    });
+
   return (
     <>
       <Menu
         theme={darkTheme ? "dark" : "light"}
         mode="inline"
-        className="menu-bar h-[84.8vh] mt-[2rem] flex flex-col gap-[15px] text-[1rem] relative"
+        className="menu-bar h-[89.8vh] mt-[2rem] flex flex-col gap-[15px] text-[1rem] relative"
       >
-        <Menu.Item key="home" icon={<HomeOutlined />}>
-          Home
-        </Menu.Item>
-        <Menu.Item key="activity" icon={<AppstoreAddOutlined />}>
-          Activity
-        </Menu.Item>
-        <Menu.SubMenu key="tasks" icon={<BarsOutlined />} title="Tasks">
-          <Menu.Item key="task-1">Task 1</Menu.Item>
-          <Menu.Item key="task-2">Task 2</Menu.Item>
-
-          <Menu.SubMenu key="subtasks" title="Subtasks">
-            <Menu.Item key="subtasks-1">Sub Task 1</Menu.Item>
-            <Menu.Item key="subtasks-2">Sub Task 2</Menu.Item>
-          </Menu.SubMenu>
-        </Menu.SubMenu>
-        <Menu.Item key="progress" icon={<AreaChartOutlined />}>
-          Progress
-        </Menu.Item>
-        <Menu.Item key="payment" icon={<PayCircleOutlined />}>
-          Payment
-        </Menu.Item>
-        <Menu.Item key="setting" icon={<SettingOutlined />}>
-          Setting
-        </Menu.Item>
+        {renderMenuItems(items)}
       </Menu>
     </>
   );
