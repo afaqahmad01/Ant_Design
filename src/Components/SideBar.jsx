@@ -35,7 +35,7 @@ const SideBar = () => {
         <Header className={`p-0`} style={{ background: colorBgContainer }}>
           <Button
             type="text"
-            className="toggle ml-[15px]"
+            className="ml-[15px]"
             onClick={() => {
               setCollapsed(!collapsed);
             }}

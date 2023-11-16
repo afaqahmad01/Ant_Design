@@ -85,7 +85,7 @@ const MenuList = ({ darkTheme }) => {
       <Menu
         theme={darkTheme ? "dark" : "light"}
         mode="inline"
-        className="menu-bar h-[89.8vh] mt-[2rem] flex flex-col gap-[15px] text-[1rem] relative"
+        className=" h-[89.8vh] mt-[2rem] flex flex-col gap-[15px] text-[1rem] relative"
       >
         {renderMenuItems(items)}
       </Menu>
