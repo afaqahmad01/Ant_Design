@@ -7,8 +7,6 @@ const Logo = () => {
       <div className=" w-[40px] h-[40px] flex items-center justify-center bg-gray-900 font-[500] text-[1.5rem] rounded-3xl">
         <FireFilled />
       </div>
-
-      <div></div>
     </div>
   );
 };
